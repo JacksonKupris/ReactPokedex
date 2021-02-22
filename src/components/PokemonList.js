@@ -1,60 +1,59 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import { Row, Col } from 'react-simple-flex-grid';
 import "react-simple-flex-grid/lib/main.css";
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
+import InfoIcon from '@material-ui/icons/Info';
+
 
 export default function PokemonList({ pokemon, sprite }) {
 
-    const useStyles = makeStyles({
+    const useStyles = makeStyles((theme) => ({
         root: {
-          minWidth: 275,
+        flexGrow: 1,
         },
-        bullet: {
-          display: 'inline-block',
-          margin: '0 2px',
-          transform: 'scale(0.8)',
+        paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        backgroundColor:'#303030'
         },
+
         title: {
-          fontSize: 14,
-          textTransform: 'uppercase',
+            fontSize: 14,
+            textTransform: 'uppercase',
+            fontWeight: 'bold',
+            color: 'white'
         },
-      });
-
-
-    const divStyle = {
-        textAlign: 'center', // <-- the magic
-        fontWeight: 'bold',
-        fontSize: 20,        
-    };
+        InfoIcon: {
+            padding: '4px'
+        }
+    }));
 
     const classes = useStyles();
 
     return (
-        <div>
-            <Row>
-            <Row>
+        <div className={classes.root}>
+        <Grid container spacing={3}>
             {pokemon.map((p, index) => (
-                <Col span={3} key={p} style={divStyle} className={classes.title}>
-                    <Card className={classes.root}>
+                <Grid item xs={6} sm={3}>
+                    <Paper className={classes.paper}>
+                    {/* <Tooltip title="More Info" placement="right-end"><InfoIcon /></Tooltip> */}
+
                     
-                    <Typography className={classes.title}>{p}</Typography>
+                    <Typography className={classes.title}>{p}
+                    </Typography>
                     <div>
                     <img src={sprite[index]}></img>
                     </div>
-                    </Card>
-                </Col>
+                    </Paper>
+                </Grid>
                 
             ))}
-            </Row>
-            </Row>
-            
+
+        </Grid>   
         </div>
     
         
