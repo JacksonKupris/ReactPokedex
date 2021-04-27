@@ -9,20 +9,15 @@ import Chip from '@material-ui/core/Chip';
 
 // Figure out how to set a key on each item of whatever you press more info on and be able to pass it down to the modal underneath. So that the correct info shows up when you press it
 
-// Possibly settle for just listing types/height/weight within the card itself so that you don't have to press more info, this could be aquired from the same call as the initial one
-// you don't get bogged down trying to make multiple calls across multiple components
 
-// Find a way to be able to turn all the available info into a object pertaining to that specific Pokemon AFTER you gater all the info
-// Which you can then be able to pass through the same way as the state list ([]) perhaps ({}) instead
-
-
-
-export default function PokemonList({ pokemon, sprite, height, weight, type }) {
+export default function PokemonList({ pokemon, sprite, height, weight, type, type2, id }) {
     // console.log(pokemon["Name"])
     const useStyles = makeStyles((theme) => ({
+        
         root: {
         flexGrow: 1,
         },
+
 
         modal: {
             display: 'flex',
@@ -49,25 +44,29 @@ export default function PokemonList({ pokemon, sprite, height, weight, type }) {
             fontSize: 12,
             textTransform: 'uppercase',
             fontWeight: 'bold',
-        }
-        
+            marginRight:5,
+            marginLeft:5
+                },
+
+
     }));
 
     const classes = useStyles();
 
 
-    const [open, setOpen] = React.useState(false);
+    // const [open, setOpen] = React.useState(false);
 
-    const handleOpen = () => {
-        setOpen(true);
-    };
+    // const handleOpen = () => {
+    //     setOpen(true);
+    // };
 
-    const handleClose = () => {
-        setOpen(false);
-    };
+    // const handleClose = () => {
+    //     setOpen(false);
+    // };
 
     return (
-        <div >
+        <div id='container'>
+        <div>
 
         <Grid container spacing={3}>
             {pokemon.map((p, index) => (
@@ -75,8 +74,9 @@ export default function PokemonList({ pokemon, sprite, height, weight, type }) {
                     <Paper className={classes.paper}>
                     
                     <Typography className={classes.title}>
-                        {p}
+                    # {id[index]} - {p} 
                     </Typography>
+                    
                     {/* <Typography className={classes.title}>
                         {height[index]}
                     </Typography>
@@ -88,6 +88,8 @@ export default function PokemonList({ pokemon, sprite, height, weight, type }) {
 
                     </div>
                     <Chip className={classes.typeTitle} label={type[index]}/>
+                    <Chip className={classes.typeTitle} label={type2[index]}/>
+
 
                     </Paper>
                 </Grid>
@@ -128,7 +130,7 @@ export default function PokemonList({ pokemon, sprite, height, weight, type }) {
 
 
         </div>
-
+        </div>
 
 
     );

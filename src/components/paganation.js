@@ -11,14 +11,13 @@ export default function paganation({gotoNextPage, gotoPrevPage}) {
         textAlign: 'center', // <-- the magic
         fontWeight: 'bold',
         position: 'bottom',
-
     };
 
 
     return (
         <div style={divStyle}>
-            {gotoPrevPage && <IconButton variant="outlined" onClick={gotoPrevPage}><NavigateBeforeIcon/></IconButton>}
-            {gotoNextPage && <IconButton variant="outlined" disableElevation onClick={gotoNextPage}><NavigateNextIcon/></IconButton>}
+            {gotoPrevPage && <IconButton variant="outlined" onClick={gotoPrevPage}><NavigateBeforeIcon/>Previous</IconButton>}
+            {gotoNextPage && <IconButton variant="outlined" disableElevation onClick={gotoNextPage}>Next<NavigateNextIcon/></IconButton>}
 
         </div>
     )
